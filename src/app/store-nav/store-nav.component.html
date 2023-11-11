@@ -1,0 +1,17 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      
+      <span>Blue Coyote Supplements</span>
+      <span class="icon-spacer"></span>
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button>
+        <mat-icon 
+          matBadge="{{cartItems}}" matBadgeColor="warn" [matBadgeHidden]="this.cartItems<=0" aria-label="Shopping Cart"> shopping_cart</mat-icon>
+      </button>
+    </mat-toolbar>
+    <app-store-dashboard></app-store-dashboard>
+  </mat-sidenav-content>
+</mat-sidenav-container>
