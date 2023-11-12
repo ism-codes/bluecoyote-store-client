@@ -27,7 +27,10 @@ export class CartItemsService {
   getCartItems() {
     return this.items;
   }
-
+  clearCart() {
+    this.items = [];
+    this.cartItemsChanged$.next(this.items);
+  }
   getSubtotal() {
     let subtotal = 0;
     for (const item of this.items) {
@@ -43,4 +46,5 @@ export class CartItemsService {
   getTotal() {
     return this.getSubtotal() + this.getShippingCost();
   }
+  
 }

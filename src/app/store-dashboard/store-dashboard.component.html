@@ -5,7 +5,7 @@
       <span>Blue Coyote Supplements</span>
       <span class="icon-spacer"></span>
       <button mat-icon-button (click)="drawer.toggle()">
-        <mat-icon matBadgeSize="small" matBadge="{{cartItemQuantity}}" class="button-icon-text" matBadgeColor="warn" [matBadgeHidden]="this.cartItemQuantity<=0" aria-label="Shopping Cart">shopping_cart</mat-icon>
+        <mat-icon matBadgeSize="small" matBadge="{{cartItemQuantity}}" class="button-icon-text" matBadgeColor="warn" [matBadgeHidden]="this.cartItemQuantity<=0" aria-hidden="false" aria-label="Shopping Cart">shopping_cart</mat-icon>
         <span>Checkout</span>
       </button>
     </mat-toolbar>
@@ -20,7 +20,7 @@
               <p>${{ product.price }}</p>
               <p>{{product.description}}</p>
               <button mat-raised-button color="primary" (click)="addToCart(product)">Add to cart 
-                <mat-icon aria-label="Shopping Cart"> shopping_cart</mat-icon>
+                <mat-icon aria-hidden="false" aria-label="Shopping Cart"> shopping_cart</mat-icon>
               </button>
             </mat-card-content>
           </div>
@@ -38,7 +38,7 @@
               <p>${{ service.price }}</p>
               <p>{{service.description}}</p>
               <button mat-raised-button color="primary" (click)="addToCart(service)">Add to cart 
-                <mat-icon aria-label="Shopping Cart"> shopping_cart</mat-icon>
+                <mat-icon aria-hidden="false" aria-label="Shopping Cart"> shopping_cart</mat-icon>
               </button>
             </mat-card-content>
           </div>
@@ -46,6 +46,6 @@
         </div>
     </div>
   </mat-sidenav-content>
-  <mat-sidenav #drawer mode="over" position="end" opened="true"><app-store-cart [cartItems]="cartItems"></app-store-cart></mat-sidenav>
+  <mat-sidenav #drawer mode="over" position="end" ><app-store-cart [cartItems]="cartItems"></app-store-cart></mat-sidenav>
 </mat-sidenav-container>
 

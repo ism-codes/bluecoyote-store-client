@@ -1,25 +1,26 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CartItemsService } from '../services/cart-items.service';
-import {MatDialog, MatDialogModule} from '@angular/material/dialog';
-import {MatButtonModule} from '@angular/material/button';
+import { MatDialog } from '@angular/material/dialog';
+import { StoreCheckoutComponent } from '../store-checkout/store-checkout.component';// Adjust the path accordingly
+
 @Component({
   selector: 'app-store-cart',
   templateUrl: './store-cart.component.html',
   styleUrls: ['./store-cart.component.css'],
   inputs: ['cartItems']
 })
-export class StoreCartComponent {
+export class StoreCartComponent implements OnInit {
   cartItems!: any[];
   subtotal: number = 0;
   shippingCost: number = 5;
   total: number = 0;
   private cartItemsSubscription: any;
-  constructor(private CartItemsService: CartItemsService) { }
-  
+
+  constructor(private CartItemsService: CartItemsService, private dialog: MatDialog) { }
+
   ngOnInit(): void {
     this.cartItemsSubscription = this.CartItemsService.cartItemsChanged$.subscribe(cartItems => {
       this.cartItems = cartItems;
-      console.log(this.cartItems)
       this.calculateTotals();
     });
   }
@@ -38,7 +39,19 @@ export class StoreCartComponent {
     this.total = this.subtotal + this.shippingCost;
   }
 
-  checkout() {
-    // Implement checkout functionality
+  openCheckoutModal() {
+    // Open the checkout modal
+    const dialogRef = this.dialog.open(StoreCheckoutComponent, {
+      width: '400px', // Adjust the width as needed
+      data: {
+        // Pass any data needed by the StoreCheckoutComponent
+      },
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      
+      
+      // Handle any data returned from the checkout modal
+    });
   }
 }

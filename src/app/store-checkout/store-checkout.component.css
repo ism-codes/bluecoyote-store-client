@@ -1,0 +1,47 @@
+.PanelContentContainer {
+    display: flex;
+  justify-content: center;
+  align-items: stretch;
+  flex-wrap: wrap;
+  text-align: center;
+  padding: 1rem;
+  background-color: rgb(126, 156, 212);
+  }
+  h1{
+    color: white;
+  }
+  
+  .FormFields {
+    border-radius: 25px;
+    padding: 0.5rem;
+    background-color: #ffffff;
+    width: 400px; /* Adjust the width based on your design */
+  }
+  
+  .mat-form-field {
+    height: 0.5rem;
+    width: 100%;
+    margin-bottom: 1px;
+    font-size: 12px
+  }
+  
+  button.mat-icon-button {
+    background-color: transparent;
+  }
+  
+  /* Optional: Add hover effect to buttons */
+  button.mat-icon-button:hover {
+    background-color: #e0e0e0; /* Change the color as needed */
+  }
+  
+  /* Optional: Style the submit button */
+  button.mat-raised-button {
+    width: 100%;
+    margin-top: 15px;
+  }
+  
+  /* Optional: Add hover effect to submit button */
+  button.mat-raised-button:hover {
+    background-color: #4caf50; /* Change the color as needed */
+    color: #ffffff; /* Change the text color as needed */
+  }

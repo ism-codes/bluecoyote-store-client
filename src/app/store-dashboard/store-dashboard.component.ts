@@ -1,23 +1,48 @@
-import { Component, inject } from '@angular/core';
+import { Component, OnInit, inject,ViewChild } from '@angular/core';
 import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { CartItemsService } from '../services/cart-items.service';
 import { StoreCartComponent } from '../store-cart/store-cart.component';
+import {MatSnackBar, MatSnackBarRef, MatSnackBarModule} from '@angular/material/snack-bar';
+import { EventService } from '../services/event.service';
+import { ConfirmationComponent } from '../confirmation/confirmation.component';
 @Component({
   selector: 'app-store-dashboard',
   templateUrl: './store-dashboard.component.html',
   styleUrls: ['./store-dashboard.component.css']
 })
-export class StoreDashboardComponent {
+export class StoreDashboardComponent implements OnInit{
+  @ViewChild('drawer') drawer: any; 
   private breakpointObserver = inject(BreakpointObserver);
+  
   cartItems: any[] = [];
-  constructor(private cartService: CartItemsService) { }
+  constructor(private cartService: CartItemsService,private eventService: EventService, private _snackBar: MatSnackBar) { }
+  ngOnInit() {
+    // Subscribe to the orderPlaced$ event
+    this.eventService.orderPlaced$.subscribe(() => {
+      // Implement logic to close the drawer
+      this.cartItemQuantity = 0;
+      this.closeDrawer();
+      this.openSnackBar()
+      // Example: this.closeDrawer();
+    });
+  }
+  openSnackBar() {
+    this._snackBar.openFromComponent(ConfirmationComponent, {
+      duration: 10 * 1000,
+    });
+  }
   addToCart(product: any) {
       this.cartService.addToCart(product);
       this.cartItemQuantity += 1
     }
+  
   cartItemQuantity: number = 0;
+  closeDrawer() {
+    if (this.drawer) {
+      this.drawer.close();
+    }}
   products = [
     {
       "id": 1,
@@ -37,7 +62,7 @@ export class StoreDashboardComponent {
     },
     {
       "id": 3,
-      "name": "Pre-Workout Supplement",
+      "name": "Pre-Wookute Supplement",
       "price": 24.99,
       "quantity": 1,
       "description": "Get ready to crush your workouts with our pre-workout supplement. It's packed with powerful ingredients to give you the energy, focus, and endurance you need to push yourself to the limit.",
