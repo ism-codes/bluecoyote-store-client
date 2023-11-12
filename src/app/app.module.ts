@@ -15,12 +15,17 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
 import { MatMenuModule } from '@angular/material/menu';
 import {MatBadgeModule} from '@angular/material/badge';
+import { StoreCartComponent } from './store-cart/store-cart.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { StoreCheckoutComponent } from './store-checkout/store-checkout.component';
 @NgModule({
-  declarations: [
+  declarations: [		
     AppComponent,
     StoreNavComponent,
-    StoreDashboardComponent
-  ],
+    StoreDashboardComponent,
+      StoreCartComponent,
+      StoreCheckoutComponent
+   ],
   imports: [
     BrowserModule,
     AppRoutingModule,

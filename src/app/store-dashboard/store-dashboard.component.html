@@ -1,18 +1,51 @@
-<div>
-  <h1>Coyote Products</h1>
-  <div class="product-card-container">
-      <mat-card class="product-card" *ngFor="let product of products">
-        <img mat-card-image src={{product.image}} alt="protein">
-        <div class="product-content">
-        <mat-card-title>{{ product.name }}</mat-card-title>
-        <mat-card-content>
-          <p>${{ product.price }}</p>
-          <p>{{product.description}}</p>
-          <button mat-raised-button color="primary" >Add to cart 
-            <mat-icon aria-label="Shopping Cart"> shopping_cart</mat-icon>
-          </button>
-        </mat-card-content>
-      </div>
-      </mat-card>
+
+<mat-sidenav-container class="sidenav-container" [hasBackdrop]="true">
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <span>Blue Coyote Supplements</span>
+      <span class="icon-spacer"></span>
+      <button mat-icon-button (click)="drawer.toggle()">
+        <mat-icon matBadgeSize="small" matBadge="{{cartItemQuantity}}" class="button-icon-text" matBadgeColor="warn" [matBadgeHidden]="this.cartItemQuantity<=0" aria-label="Shopping Cart">shopping_cart</mat-icon>
+        <span>Checkout</span>
+      </button>
+    </mat-toolbar>
+    <div class="goods anchor" id="products">
+      <h1>Blue Coyote Products</h1>
+      <div class="product-card-container">
+          <mat-card class="product-card" *ngFor="let product of products">
+            <img mat-card-image src={{product.image}} alt="{{product.name}}">
+            <div class="product-content">
+            <mat-card-title>{{ product.name }}</mat-card-title>
+            <mat-card-content>
+              <p>${{ product.price }}</p>
+              <p>{{product.description}}</p>
+              <button mat-raised-button color="primary" (click)="addToCart(product)">Add to cart 
+                <mat-icon aria-label="Shopping Cart"> shopping_cart</mat-icon>
+              </button>
+            </mat-card-content>
+          </div>
+          </mat-card>
+        </div>
     </div>
-</div>
+    <div class="goods anchor" >
+      <h1 id="services">Blue Coyote Services</h1>
+      <div class="product-card-container">
+          <mat-card class="product-card" *ngFor="let service of services">
+            <img mat-card-image src={{service.image}} alt="{{service.name}}">
+            <div class="product-content">
+            <mat-card-title>{{ service.name }}</mat-card-title>
+            <mat-card-content>
+              <p>${{ service.price }}</p>
+              <p>{{service.description}}</p>
+              <button mat-raised-button color="primary" (click)="addToCart(service)">Add to cart 
+                <mat-icon aria-label="Shopping Cart"> shopping_cart</mat-icon>
+              </button>
+            </mat-card-content>
+          </div>
+          </mat-card>
+        </div>
+    </div>
+  </mat-sidenav-content>
+  <mat-sidenav #drawer mode="over" position="end" opened="true"><app-store-cart [cartItems]="cartItems"></app-store-cart></mat-sidenav>
+</mat-sidenav-container>
+

@@ -1,0 +1,23 @@
+<div class="cart-container">
+  <h2>Your Cart</h2>
+  <ul class="cart-items" *ngIf="cartItems!">
+    <li *ngFor="let item of cartItems">
+      <mat-card class="cart-card">
+        <img mat-card-image src={{item.image}} alt="protein">
+        <div class="cart-item-details">
+        <mat-card-title>{{ item.name }}</mat-card-title>
+        <mat-card-content>
+          <p>{{ item.price | currency:'USD' }}</p>
+          <p>Quantity: x{{item.quantity}}</p>
+        </mat-card-content>
+      </div>
+      </mat-card>
+    </li>
+  </ul>
+  <div class="cart-totals">
+    <p>Subtotal: {{ subtotal | currency:'USD' }}</p>
+    <p>Shipping: {{ shippingCost | currency:'USD' }}</p>
+    <p>Total: {{ total | currency:'USD' }}</p>
+  </div>
+  <button (click)="checkout()">Checkout</button>
+</div>

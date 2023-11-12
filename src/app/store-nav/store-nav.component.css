@@ -17,5 +17,14 @@
 }
 .icon-spacer {
   
-  flex: 1 1 auto;
+  flex: auto;
+}
+mat-toolbar button{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 0.5rem;
+}
+.button-icon-text {
+  width: unset;
 }
